@@ -1,0 +1,9 @@
+img_path = '/Users/vluo/Desktop/hemp/hemp_pictures/yellow_leaf_spot/png'
+image_list = os.listdir(img_path)
+files = [os.path.join(img_path, _) for _ in image_list]
+for i in files:
+    str = i.rsplit(".", 1)
+    output_img_path = str[0] + ".jpg"
+    im = Image.open(i)
+    rgb_im = im.convert('RGB')
+    rgb_im.save(output_img_path)
