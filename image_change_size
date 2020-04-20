@@ -1,0 +1,32 @@
+import os, sys
+from PIL import Image
+from resizeimage import resizeimage
+
+img_path = '/Users/vluo/Desktop/hemp/hemp_pictures/yellow_leaf_spot'
+image_list = os.listdir(img_path)
+files = [os.path.join(img_path, _) for _ in image_list]
+num = 0
+for i in files:
+    image = Image.open(i)
+    list_size = image.size
+    if list_size[0] < list_size[1]:
+        short = list_size[0]
+        long = list_size[1]
+        short = short/150
+        long = int(long/short)
+        new_image = image.resize((150, long))
+    elif list_size[0] > list_size[1]:
+        short = list_size[1]
+        long = list_size[0]
+        short = short/150
+        long = int(long/short)
+        new_image = image.resize((long,150))
+    else:
+        short = long = 150
+        new_image = image.resize((150,150))
+    num = num + 1
+    #print(num)
+    new_img_path = str(num) + ".jpg"
+    to_save = img_path + '/' + new_img_path
+    new_image.save(to_save)
+    print(new_image.size)
