@@ -1,0 +1,29 @@
+from PIL import Image
+import os
+
+def rotation(img_path,out_path):
+    image_list = os.listdir(img_path)
+    files = [os.path.join(img_path, _) for _ in image_list]
+    num = 1
+    for i in files:
+        image = Image.open(i)
+        #path_str = i.rsplit(".", 1)
+        image_rot_360 = image.rotate(360)
+        output_img_path = out_path + '/' + str(num)+ ".jpg"
+        image_rot_360.save(output_img_path)
+        num += 1
+        
+        image_rot_90 = image.rotate(90)
+        output_img_path = out_path + '/' + str(num)+ ".jpg"
+        image_rot_90.save(output_img_path)
+        num += 1
+        
+        image_rot_180 = image.rotate(180)
+        output_img_path = out_path + '/' + str(num)+ ".jpg"
+        image_rot_180.save(output_img_path)
+        num += 1
+
+        image_rot_270 = image.rotate(270)
+        output_img_path = out_path + '/' + str(num)+ ".jpg"
+        image_rot_270.save(output_img_path)
+        num += 1
