@@ -1,0 +1,42 @@
+from PIL import Image
+import os
+
+def cropping(img_path, save_path, n):
+    image_list = os.listdir(img_path)
+    files = [os.path.join(img_path, _) for _ in image_list]
+    for i in files:
+        image = Image.open(i)
+        origin_size = image.size
+        #size = (width, height)
+        num = 0
+        if origin_size[1] == n:
+            while n * num <= origin_size[0]:
+                #box = (left, upper, right, lower)
+                box = (num * n, 0, (num+1)*n, n)
+                cropped_image = image.crop(box)
+                path_str = i.rsplit(".", 1)
+                output_img_path = path_str[0] + str(num)+ ".jpg"
+                cropped_image.save(output_img_path)
+                num += 1
+            box = ((origin_size[0] - n), 0, origin_size[0],n)
+            cropped_image = image.crop(box)
+            path_str = i.rsplit(".", 1)
+            output_img_path = path_str[0] + str(num)+ "0.jpg"
+            cropped_image.save(output_img_path)
+                
+        elif origin_size[0] == n:
+            while n * num <= origin_size[1]:
+                #box = (left, upper, right, lower)
+                box = (0, num * n, n, (num+1)*n)
+                cropped_image = image.crop(box)
+                path_str = i.rsplit(".", 1)
+                output_img_path = path_str[0] + str(num)+ ".jpg"
+                cropped_image.save(output_img_path)
+                num += 1
+            box = (0, (origin_size[0] - n), n, origin_size[0])
+            cropped_image = image.crop(box)
+            path_str = i.rsplit(".", 1)
+            output_img_path = path_str[0] + str(num)+ "0.jpg"
+            cropped_image.save(output_img_path) 
+                
+        
