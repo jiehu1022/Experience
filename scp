@@ -1,1 +1,5 @@
+#from local
 scp -r local_folder remote_username@remote_ip:remote_folder  
+
+#to local
+scp -r remote_username@remote_ip:remote_folder  local_folder
