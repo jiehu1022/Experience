@@ -1,0 +1,8 @@
+出现错误：
+OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+
+最简单的方法是更换了root密码的认证方式解决的，新版mysql使用的caching_sha2_password，换成mysql_native_password就可以连上了。
+步骤是在cmd命令行连接mysql, 通过mysql -u root -p *****
+然后输入ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '************';
+这时再跑下python脚本就可以连接了。
