@@ -1,2 +1,7 @@
 mysql -u root -p 
 Enter password: hujie1022
+
+
+怎么知道当前MySql的默认配置文件在哪里？
+查找默认配置文件位置，执行命令，会显示查找配置文件的顺序：
+mysql --help | grep my.cnf
